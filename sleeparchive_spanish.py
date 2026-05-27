@@ -29,6 +29,25 @@ div.stButton > button:hover {
     border: 1px solid #aaaaff;
     background-color: #303060;
 }
+div[data-testid="stLinkButton"] a {
+    width: 100% !important;
+    color: #ffffff !important;
+    background-color: #24244a !important;
+    border: 1px solid #6b6bb0 !important;
+    border-radius: 18px !important;
+    font-weight: 700 !important;
+    padding: 0.8rem 1rem !important;
+    text-decoration: none !important;
+}
+div[data-testid="stLinkButton"] a:hover {
+    color: #ffffff !important;
+    border: 1px solid #aaaaff !important;
+    background-color: #303060 !important;
+}
+div[data-testid="stLinkButton"] a p {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
 textarea, input {
     background-color: #101020 !important;
     color: #f2f0ff !important;
@@ -174,6 +193,28 @@ Permite que las piernas se sientan pesadas.
 
 Imagina que tu cuerpo ya está dormido y que tu mente solo está alcanzándolo.
 """)
+
+st.divider()
+st.header("Sonidos para acompañar el sueño")
+st.write("Elige algo largo y sencillo. No busques más videos después de abrir uno.")
+
+sound_links = {
+    "🌧️ Lluvia suave 8 horas": "https://www.youtube.com/results?search_query=lluvia+suave+para+dormir+8+horas",
+    "🌊 Olas del mar 8 horas": "https://www.youtube.com/results?search_query=olas+del+mar+para+dormir+8+horas",
+    "🤍 Ruido blanco 10 horas": "https://www.youtube.com/results?search_query=ruido+blanco+para+dormir+10+horas",
+    "🟤 Ruido café / brown noise": "https://www.youtube.com/results?search_query=brown+noise+sleep+10+hours",
+    "🌀 Ventilador para dormir": "https://www.youtube.com/results?search_query=fan+noise+sleep+10+hours",
+    "🌲 Bosque nocturno": "https://www.youtube.com/results?search_query=sonidos+de+bosque+nocturno+para+dormir+8+horas",
+}
+
+cols = st.columns(2)
+
+for i, (label, url) in enumerate(sound_links.items()):
+    with cols[i % 2]:
+        st.link_button(label, url)
+
+st.caption("Tip: baja el brillo, baja el volumen y no leas comentarios.")
+st.divider()
 
 st.divider()
 
