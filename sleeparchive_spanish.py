@@ -196,26 +196,41 @@ Imagina que tu cuerpo ya está dormido y que tu mente solo está alcanzándolo.
 
 st.divider()
 st.header("Sonidos para acompañar el sueño")
-st.write("Elige algo largo y sencillo. No busques más videos después de abrir uno.")
+st.write("Elige una sola opción directa. No hay que buscar, comparar ni decidir entre videos.")
+
+st.markdown("""
+<div class='calm-card'>
+<h3>🌙 Opción recomendada</h3>
+<p>Para no pensar: abre este sonido, baja el brillo, baja el volumen y deja el teléfono a un lado.</p>
+</div>
+""", unsafe_allow_html=True)
+
+st.link_button(
+    "▶️ No quiero pensar, pon sonido para dormir",
+    "https://www.youtube.com/watch?v=nMfPqeZjc2c",
+    use_container_width=True
+)
+
+st.info("🌙 Modo sin interrupciones: si usas YouTube Premium, estos sonidos pueden reproducirse sin anuncios, lo que ayuda a mantener una experiencia tranquila sin estímulos inesperados durante la noche.")
+
+st.caption("También estamos considerando una versión futura con audios internos sin depender de YouTube, ideal para una experiencia más controlada y completamente enfocada en volver a dormir.")
 
 sound_links = {
-    "🌧️ Lluvia suave 8 horas": "https://www.youtube.com/results?search_query=lluvia+suave+para+dormir+8+horas",
-    "🌊 Olas del mar 8 horas": "https://www.youtube.com/results?search_query=olas+del+mar+para+dormir+8+horas",
-    "🤍 Ruido blanco 10 horas": "https://www.youtube.com/results?search_query=ruido+blanco+para+dormir+10+horas",
-    "🟤 Ruido café / brown noise": "https://www.youtube.com/results?search_query=brown+noise+sleep+10+hours",
-    "🌀 Ventilador para dormir": "https://www.youtube.com/results?search_query=fan+noise+sleep+10+hours",
-    "🌲 Bosque nocturno": "https://www.youtube.com/results?search_query=sonidos+de+bosque+nocturno+para+dormir+8+horas",
+    "🌧️ Lluvia suave": "https://www.youtube.com/watch?v=mPZkdNFkNps",
+    "🌊 Olas del mar": "https://www.youtube.com/watch?v=bn9F19Hi1Lk",
+    "🤍 Ruido blanco": "https://www.youtube.com/watch?v=nMfPqeZjc2c",
+    "🟤 Brown noise": "https://www.youtube.com/watch?v=Q6MemVxEquE",
+    "🌀 Ventilador": "https://www.youtube.com/watch?v=C5Gm8UvxKlU",
+    "🌲 Bosque nocturno": "https://www.youtube.com/watch?v=xNN7iTA57jM",
 }
 
 cols = st.columns(2)
 
 for i, (label, url) in enumerate(sound_links.items()):
     with cols[i % 2]:
-        st.link_button(label, url)
+        st.link_button(label, url, use_container_width=True)
 
-st.caption("Tip: baja el brillo, baja el volumen y no leas comentarios.")
-st.divider()
-
+st.caption("Tip: no leas comentarios, no cambies de video y no abras más pestañas.")
 st.divider()
 
 with st.expander("Revisión por la mañana"):
