@@ -55,7 +55,6 @@ textarea, input {
     background-color: #101020 !important;
     color: #f2f0ff !important;
 }
-/* Fix Streamlit selectbox/dropdown colors in dark mode */
 div[data-baseweb="select"] > div {
     background-color: #15152a !important;
     color: #ffffff !important;
@@ -72,7 +71,6 @@ div[data-baseweb="select"] div {
     font-weight: 800 !important;
 }
 
-/* Streamlit/BaseWeb renders the dropdown menu in a floating portal, so target it globally too */
 div[data-baseweb="popover"],
 div[data-baseweb="popover"] > div,
 div[data-baseweb="menu"],
@@ -346,19 +344,15 @@ st.link_button(
     use_container_width=True
 )
 
-st.info("🌙 Modo sin interrupciones: si usas YouTube Premium, estos sonidos pueden reproducirse sin anuncios, lo que ayuda a mantener una experiencia tranquila sin estímulos inesperados durante la noche.")
+st.info("🌙 Para una experiencia más tranquila, usa opciones sin interrupciones cuando sea posible.")
 
-with st.expander("🔊 Próximamente: reproductor interno sin anuncios", expanded=False):
-    st.write("Cuando tengamos audios propios, esta sección podrá reproducir sonidos dentro de la app con un solo clic y en loop continuo.")
-    st.caption("Por ahora dejamos esta función escondida para no mostrar avisos de archivos faltantes ni confundir al usuario durante la madrugada.")
+st.caption("Elige una opción, toca play una vez y deja el teléfono a un lado.")
 
-st.caption("YouTube y Spotify siguen disponibles como respaldo dentro de la app. Por reglas de navegador y de esas plataformas puede que pidan tocar play dentro del mini player.")
-
-st.subheader("Mini players dentro de la app")
-st.info("Los mini players evitan abrir otra página. Por reglas de navegador, YouTube y Spotify pueden requerir tocar play dentro del player, pero el usuario ya no tiene que buscar ni escoger nada.")
+st.subheader("Reproductores tranquilos")
+st.write("Elige un sonido ya preparado. No tienes que buscar ni comparar opciones.")
 
 st.subheader("YouTube embebido")
-st.caption("Videos directos dentro de la app. Procura usar videos de 6 horas o más.")
+st.caption("Sonidos largos y sencillos para acompañar el descanso.")
 
 youtube_embed_links = {
     "🌧️ Lluvia suave": "mPZkdNFkNps",
@@ -376,12 +370,12 @@ selected_youtube = st.selectbox(
 )
 render_youtube_embed(selected_youtube, youtube_embed_links[selected_youtube])
 
-st.caption("Tip: toca play una vez, no leas comentarios, no cambies de video y no abras más pestañas.")
+st.caption("Tip: toca play una vez, baja el brillo y no abras más pestañas.")
 
 st.markdown("""
 <div class='calm-card'>
 <h3>🎧 Spotify</h3>
-<p>Si prefieres audio sin video, abre una opción equivalente en Spotify. Ideal si ya usas Spotify para dormir.</p>
+<p>Audio tranquilo para acompañar el descanso, sin tener que buscar entre resultados.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -401,7 +395,7 @@ selected_spotify = st.selectbox(
 )
 render_spotify_embed(selected_spotify, spotify_embed_links[selected_spotify])
 
-st.caption("Tip: toca play una vez, pon temporizador si lo necesitas y no sigas buscando más sonidos.")
+st.caption("Tip: toca play una vez, pon temporizador si lo necesitas y vuelve a descansar.")
 st.divider()
 
 with st.expander("Revisión por la mañana"):
