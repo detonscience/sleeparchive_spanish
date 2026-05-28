@@ -1,6 +1,9 @@
 import streamlit as st
+import streamlit.components.v1 as components
 from datetime import datetime
 import random
+import base64
+from pathlib import Path
 
 st.set_page_config(page_title="Rescate 4AM", page_icon="🌙", layout="centered")
 
@@ -132,7 +135,52 @@ activities = {
             "Haz que cada número se sienta más silencioso que el anterior."
         ]
     }
+
 }
+
+def render_one_click_audio_player(title, file_path):
+    audio_path = Path(file_path)
+
+    if not audio_path.exists():
+        st.warning(f"Falta el archivo local: {file_path}")
+        return
+
+    audio_bytes = audio_path.read_bytes()
+    encoded_audio = base64.b64encode(audio_bytes).decode("utf-8")
+
+    components.html(
+        f"""
+        <div style="margin: 0.4rem 0 0.8rem 0;">
+            <button
+                onclick="
+                    const audios = window.parent.document.querySelectorAll('audio');
+                    audios.forEach(a => {{ a.pause(); a.currentTime = 0; }});
+                    const audio = document.getElementById('{audio_path.stem}');
+                    audio.loop = true;
+                    audio.volume = 0.55;
+                    audio.play();
+                "
+                style="
+                    width: 100%;
+                    background-color: #24244a;
+                    color: #ffffff;
+                    border-radius: 18px;
+                    border: 1px solid #6b6bb0;
+                    padding: 0.9rem 1rem;
+                    font-size: 17px;
+                    font-weight: 700;
+                    cursor: pointer;
+                "
+            >
+                ▶️ {title}
+            </button>
+            <audio id="{audio_path.stem}" preload="auto">
+                <source src="data:audio/mpeg;base64,{encoded_audio}" type="audio/mpeg">
+            </audio>
+        </div>
+        """,
+        height=80,
+    )
 
 st.title("🌙 Rescate 4AM")
 st.subheader("Una app tranquila para ayudarte a volver a dormir")
@@ -213,10 +261,32 @@ st.link_button(
 
 st.info("🌙 Modo sin interrupciones: si usas YouTube Premium, estos sonidos pueden reproducirse sin anuncios, lo que ayuda a mantener una experiencia tranquila sin estímulos inesperados durante la noche.")
 
-st.caption("También estamos considerando una versión futura con audios internos sin depender de YouTube, ideal para una experiencia más controlada y completamente enfocada en volver a dormir.")
+st.markdown("""
+<div class='calm-card'>
+<h3>🔊 Reproductor interno de un solo clic</h3>
+<p>Esta es la mejor opción para la madrugada: das un clic y el sonido empieza dentro de la app. No hay que abrir YouTube, Spotify ni buscar el botón de play.</p>
+<p>Los audios se repiten en loop continuo, así que pueden acompañar por 6 horas o más si el teléfono no bloquea el navegador.</p>
+</div>
+""", unsafe_allow_html=True)
+
+st.caption("Para activar esta parte, coloca archivos .mp3 en una carpeta llamada audio junto a este archivo de Python. Ejemplo: audio/ruido_blanco.mp3")
+
+local_audio_links = {
+    "No quiero pensar: ruido blanco continuo": "audio/ruido_blanco.mp3",
+    "Lluvia suave continua": "audio/lluvia_suave.mp3",
+    "Olas del mar continuas": "audio/olas_mar.mp3",
+    "Brown noise continuo": "audio/brown_noise.mp3",
+    "Ventilador continuo": "audio/ventilador.mp3",
+    "Bosque nocturno continuo": "audio/bosque_nocturno.mp3",
+}
+
+for audio_label, audio_file in local_audio_links.items():
+    render_one_click_audio_player(audio_label, audio_file)
+
+st.caption("YouTube y Spotify siguen disponibles como respaldo, pero por reglas de navegador y de esas plataformas puede que pidan otro toque para reproducir.")
 
 st.subheader("YouTube")
-st.caption("Videos directos para abrir una opción específica sin tener que buscar.")
+st.caption("Videos directos para abrir una opción específica sin tener que buscar. Procura usar videos de 6 horas o más.")
 
 youtube_sound_links = {
     "🌧️ Lluvia suave": "https://www.youtube.com/watch?v=mPZkdNFkNps",
@@ -243,7 +313,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.caption("En Spotify también puede haber anuncios si usas la versión gratis. Spotify Premium ayuda a mantener la experiencia sin interrupciones.")
-st.caption("Los enlaces de Spotify ya van directo a una playlist específica. No tienes que escoger entre resultados.")
+st.caption("Los enlaces de Spotify ya van directo a una playlist específica. No tienes que escoger entre resultados. Procura que sean playlists largas, idealmente de 6 horas o más.")
 
 spotify_sound_links = {
     "🌧️ Lluvia suave en Spotify": "https://open.spotify.com/playlist/37i9dQZF1DXdp5bwJ1FHFe",
