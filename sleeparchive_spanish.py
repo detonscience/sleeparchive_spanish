@@ -60,25 +60,45 @@ div[data-baseweb="select"] > div {
     background-color: #15152a !important;
     color: #ffffff !important;
     border: 1px solid #6b6bb0 !important;
+    border-radius: 14px !important;
 }
-div[data-baseweb="select"] span {
+div[data-baseweb="select"] input {
     color: #ffffff !important;
-    font-weight: 700 !important;
+    caret-color: #ffffff !important;
 }
-div[data-baseweb="popover"] div[role="listbox"] {
+div[data-baseweb="select"] span,
+div[data-baseweb="select"] div {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+}
+
+/* Streamlit/BaseWeb renders the dropdown menu in a floating portal, so target it globally too */
+div[data-baseweb="popover"],
+div[data-baseweb="popover"] > div,
+div[data-baseweb="menu"],
+ul[role="listbox"],
+div[role="listbox"] {
     background-color: #15152a !important;
+    color: #ffffff !important;
     border: 1px solid #6b6bb0 !important;
 }
-div[data-baseweb="popover"] div[role="option"] {
+ul[role="listbox"] li,
+div[role="option"],
+li[role="option"] {
     background-color: #15152a !important;
     color: #ffffff !important;
 }
-div[data-baseweb="popover"] div[role="option"] span {
+ul[role="listbox"] li *,
+div[role="option"] *,
+li[role="option"] * {
     color: #ffffff !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
 }
-div[data-baseweb="popover"] div[role="option"]:hover {
+ul[role="listbox"] li:hover,
+div[role="option"]:hover,
+li[role="option"]:hover {
     background-color: #303060 !important;
+    color: #ffffff !important;
 }
 .small-note {
     opacity: 0.8;
