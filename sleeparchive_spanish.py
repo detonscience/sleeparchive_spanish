@@ -243,14 +243,15 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.caption("En Spotify también puede haber anuncios si usas la versión gratis. Spotify Premium ayuda a mantener la experiencia sin interrupciones.")
+st.caption("Los enlaces de Spotify ya van directo a una playlist específica. No tienes que escoger entre resultados.")
 
 spotify_sound_links = {
-    "🌧️ Lluvia suave en Spotify": "https://open.spotify.com/search/rain%20sounds%20sleep",
-    "🌊 Olas del mar en Spotify": "https://open.spotify.com/search/ocean%20waves%20sleep",
-    "🤍 Ruido blanco en Spotify": "https://open.spotify.com/search/white%20noise%20sleep",
-    "🟤 Brown noise en Spotify": "https://open.spotify.com/search/brown%20noise%20sleep",
-    "🌀 Ventilador en Spotify": "https://open.spotify.com/search/fan%20noise%20sleep",
-    "🌲 Bosque nocturno en Spotify": "https://open.spotify.com/search/forest%20night%20sounds%20sleep",
+    "🌧️ Lluvia suave en Spotify": "https://open.spotify.com/playlist/37i9dQZF1DXdp5bwJ1FHFe",
+    "🌊 Olas del mar en Spotify": "https://open.spotify.com/playlist/37i9dQZF1DX9if5QDLdzCa",
+    "🤍 Ruido blanco en Spotify": "https://open.spotify.com/playlist/37i9dQZF1DWUZ5bk6qqDSy",
+    "🟤 Brown noise en Spotify": "https://open.spotify.com/playlist/37i9dQZF1DX4hpot8sYudB",
+    "🌀 Ventilador en Spotify": "https://open.spotify.com/playlist/37i9dQZF1DWUm4vT7WQxcD",
+    "🌲 Bosque nocturno en Spotify": "https://open.spotify.com/playlist/37i9dQZF1DWWSads6V2oIk",
 }
 
 spotify_cols = st.columns(2)
