@@ -215,7 +215,10 @@ st.info("🌙 Modo sin interrupciones: si usas YouTube Premium, estos sonidos pu
 
 st.caption("También estamos considerando una versión futura con audios internos sin depender de YouTube, ideal para una experiencia más controlada y completamente enfocada en volver a dormir.")
 
-sound_links = {
+st.subheader("YouTube")
+st.caption("Videos directos para abrir una opción específica sin tener que buscar.")
+
+youtube_sound_links = {
     "🌧️ Lluvia suave": "https://www.youtube.com/watch?v=mPZkdNFkNps",
     "🌊 Olas del mar": "https://www.youtube.com/watch?v=bn9F19Hi1Lk",
     "🤍 Ruido blanco": "https://www.youtube.com/watch?v=nMfPqeZjc2c",
@@ -226,11 +229,37 @@ sound_links = {
 
 cols = st.columns(2)
 
-for i, (label, url) in enumerate(sound_links.items()):
+for i, (label, url) in enumerate(youtube_sound_links.items()):
     with cols[i % 2]:
         st.link_button(label, url, use_container_width=True)
 
 st.caption("Tip: no leas comentarios, no cambies de video y no abras más pestañas.")
+
+st.markdown("""
+<div class='calm-card'>
+<h3>🎧 Spotify</h3>
+<p>Si prefieres audio sin video, abre una opción equivalente en Spotify. Ideal si ya usas Spotify para dormir.</p>
+</div>
+""", unsafe_allow_html=True)
+
+st.caption("En Spotify también puede haber anuncios si usas la versión gratis. Spotify Premium ayuda a mantener la experiencia sin interrupciones.")
+
+spotify_sound_links = {
+    "🌧️ Lluvia suave en Spotify": "https://open.spotify.com/search/rain%20sounds%20sleep",
+    "🌊 Olas del mar en Spotify": "https://open.spotify.com/search/ocean%20waves%20sleep",
+    "🤍 Ruido blanco en Spotify": "https://open.spotify.com/search/white%20noise%20sleep",
+    "🟤 Brown noise en Spotify": "https://open.spotify.com/search/brown%20noise%20sleep",
+    "🌀 Ventilador en Spotify": "https://open.spotify.com/search/fan%20noise%20sleep",
+    "🌲 Bosque nocturno en Spotify": "https://open.spotify.com/search/forest%20night%20sounds%20sleep",
+}
+
+spotify_cols = st.columns(2)
+
+for i, (label, url) in enumerate(spotify_sound_links.items()):
+    with spotify_cols[i % 2]:
+        st.link_button(label, url, use_container_width=True)
+
+st.caption("Tip: elige una sola opción, pon temporizador si lo necesitas y no sigas buscando más sonidos.")
 st.divider()
 
 with st.expander("Revisión por la mañana"):
