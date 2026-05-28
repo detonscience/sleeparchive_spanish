@@ -55,6 +55,31 @@ textarea, input {
     background-color: #101020 !important;
     color: #f2f0ff !important;
 }
+/* Fix Streamlit selectbox/dropdown colors in dark mode */
+div[data-baseweb="select"] > div {
+    background-color: #15152a !important;
+    color: #ffffff !important;
+    border: 1px solid #6b6bb0 !important;
+}
+div[data-baseweb="select"] span {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+div[data-baseweb="popover"] div[role="listbox"] {
+    background-color: #15152a !important;
+    border: 1px solid #6b6bb0 !important;
+}
+div[data-baseweb="popover"] div[role="option"] {
+    background-color: #15152a !important;
+    color: #ffffff !important;
+}
+div[data-baseweb="popover"] div[role="option"] span {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+div[data-baseweb="popover"] div[role="option"]:hover {
+    background-color: #303060 !important;
+}
 .small-note {
     opacity: 0.8;
     font-size: 0.95rem;
