@@ -348,29 +348,11 @@ st.link_button(
 
 st.info("🌙 Modo sin interrupciones: si usas YouTube Premium, estos sonidos pueden reproducirse sin anuncios, lo que ayuda a mantener una experiencia tranquila sin estímulos inesperados durante la noche.")
 
-st.markdown("""
-<div class='calm-card'>
-<h3>🔊 Reproductor interno de un solo clic</h3>
-<p>Esta es la mejor opción para la madrugada: das un clic y el sonido empieza dentro de la app. No hay que abrir YouTube, Spotify ni buscar el botón de play.</p>
-<p>Los audios se repiten en loop continuo, así que pueden acompañar por 6 horas o más si el teléfono no bloquea el navegador.</p>
-</div>
-""", unsafe_allow_html=True)
+with st.expander("🔊 Próximamente: reproductor interno sin anuncios", expanded=False):
+    st.write("Cuando tengamos audios propios, esta sección podrá reproducir sonidos dentro de la app con un solo clic y en loop continuo.")
+    st.caption("Por ahora dejamos esta función escondida para no mostrar avisos de archivos faltantes ni confundir al usuario durante la madrugada.")
 
-st.caption("Para activar esta parte, coloca archivos .mp3 en una carpeta llamada audio junto a este archivo de Python. Ejemplo: audio/ruido_blanco.mp3")
-
-local_audio_links = {
-    "No quiero pensar: ruido blanco continuo": "audio/ruido_blanco.mp3",
-    "Lluvia suave continua": "audio/lluvia_suave.mp3",
-    "Olas del mar continuas": "audio/olas_mar.mp3",
-    "Brown noise continuo": "audio/brown_noise.mp3",
-    "Ventilador continuo": "audio/ventilador.mp3",
-    "Bosque nocturno continuo": "audio/bosque_nocturno.mp3",
-}
-
-for audio_label, audio_file in local_audio_links.items():
-    render_one_click_audio_player(audio_label, audio_file)
-
-st.caption("YouTube y Spotify siguen disponibles como respaldo, pero por reglas de navegador y de esas plataformas puede que pidan otro toque para reproducir.")
+st.caption("YouTube y Spotify siguen disponibles como respaldo dentro de la app. Por reglas de navegador y de esas plataformas puede que pidan tocar play dentro del mini player.")
 
 st.subheader("Mini players dentro de la app")
 st.info("Los mini players evitan abrir otra página. Por reglas de navegador, YouTube y Spotify pueden requerir tocar play dentro del player, pero el usuario ya no tiene que buscar ni escoger nada.")
