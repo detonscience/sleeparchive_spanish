@@ -66,6 +66,11 @@ textarea, input {
     border: 1px solid rgba(255,255,255,0.12);
     margin-bottom: 1rem;
 }
+.player-note {
+    opacity: 0.82;
+    font-size: 0.92rem;
+    margin-top: -0.4rem;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -182,6 +187,43 @@ def render_one_click_audio_player(title, file_path):
         height=80,
     )
 
+
+def render_youtube_embed(title, video_id):
+    st.markdown(f"**{title}**")
+    components.html(
+        f"""
+        <iframe
+            width="100%"
+            height="170"
+            src="https://www.youtube.com/embed/{video_id}?autoplay=0&controls=1&rel=0&modestbranding=1&playsinline=1&loop=1&playlist={video_id}"
+            title="{title}"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+        </iframe>
+        """,
+        height=190,
+    )
+
+
+def render_spotify_embed(title, spotify_playlist_id):
+    st.markdown(f"**{title}**")
+    components.html(
+        f"""
+        <iframe
+            style="border-radius:12px"
+            src="https://open.spotify.com/embed/playlist/{spotify_playlist_id}?utm_source=generator&theme=0"
+            width="100%"
+            height="152"
+            frameborder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+        </iframe>
+        """,
+        height=172,
+    )
+
 st.title("🌙 Rescate 4AM")
 st.subheader("Una app tranquila para ayudarte a volver a dormir")
 st.markdown("<p class='small-note'>Primera regla: no hacer scroll, no revisar mensajes, no resolver problemas.</p>", unsafe_allow_html=True)
@@ -285,25 +327,29 @@ for audio_label, audio_file in local_audio_links.items():
 
 st.caption("YouTube y Spotify siguen disponibles como respaldo, pero por reglas de navegador y de esas plataformas puede que pidan otro toque para reproducir.")
 
-st.subheader("YouTube")
-st.caption("Videos directos para abrir una opción específica sin tener que buscar. Procura usar videos de 6 horas o más.")
+st.subheader("Mini players dentro de la app")
+st.info("Los mini players evitan abrir otra página. Por reglas de navegador, YouTube y Spotify pueden requerir tocar play dentro del player, pero el usuario ya no tiene que buscar ni escoger nada.")
 
-youtube_sound_links = {
-    "🌧️ Lluvia suave": "https://www.youtube.com/watch?v=mPZkdNFkNps",
-    "🌊 Olas del mar": "https://www.youtube.com/watch?v=bn9F19Hi1Lk",
-    "🤍 Ruido blanco": "https://www.youtube.com/watch?v=nMfPqeZjc2c",
-    "🟤 Brown noise": "https://www.youtube.com/watch?v=Q6MemVxEquE",
-    "🌀 Ventilador": "https://www.youtube.com/watch?v=C5Gm8UvxKlU",
-    "🌲 Bosque nocturno": "https://www.youtube.com/watch?v=xNN7iTA57jM",
+st.subheader("YouTube embebido")
+st.caption("Videos directos dentro de la app. Procura usar videos de 6 horas o más.")
+
+youtube_embed_links = {
+    "🌧️ Lluvia suave": "mPZkdNFkNps",
+    "🌊 Olas del mar": "bn9F19Hi1Lk",
+    "🤍 Ruido blanco": "nMfPqeZjc2c",
+    "🟤 Brown noise": "Q6MemVxEquE",
+    "🌀 Ventilador": "C5Gm8UvxKlU",
+    "🌲 Bosque nocturno": "xNN7iTA57jM",
 }
 
-cols = st.columns(2)
+selected_youtube = st.selectbox(
+    "YouTube: sonido ya escogido",
+    list(youtube_embed_links.keys()),
+    index=2
+)
+render_youtube_embed(selected_youtube, youtube_embed_links[selected_youtube])
 
-for i, (label, url) in enumerate(youtube_sound_links.items()):
-    with cols[i % 2]:
-        st.link_button(label, url, use_container_width=True)
-
-st.caption("Tip: no leas comentarios, no cambies de video y no abras más pestañas.")
+st.caption("Tip: toca play una vez, no leas comentarios, no cambies de video y no abras más pestañas.")
 
 st.markdown("""
 <div class='calm-card'>
@@ -312,25 +358,23 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-st.caption("En Spotify también puede haber anuncios si usas la versión gratis. Spotify Premium ayuda a mantener la experiencia sin interrupciones.")
-st.caption("Los enlaces de Spotify ya van directo a una playlist específica. No tienes que escoger entre resultados. Procura que sean playlists largas, idealmente de 6 horas o más.")
-
-spotify_sound_links = {
-    "🌧️ Lluvia suave en Spotify": "https://open.spotify.com/playlist/37i9dQZF1DXdp5bwJ1FHFe",
-    "🌊 Olas del mar en Spotify": "https://open.spotify.com/playlist/37i9dQZF1DX9if5QDLdzCa",
-    "🤍 Ruido blanco en Spotify": "https://open.spotify.com/playlist/37i9dQZF1DWUZ5bk6qqDSy",
-    "🟤 Brown noise en Spotify": "https://open.spotify.com/playlist/37i9dQZF1DX4hpot8sYudB",
-    "🌀 Ventilador en Spotify": "https://open.spotify.com/playlist/37i9dQZF1DWUm4vT7WQxcD",
-    "🌲 Bosque nocturno en Spotify": "https://open.spotify.com/playlist/37i9dQZF1DWWSads6V2oIk",
+spotify_embed_links = {
+    "🌧️ Lluvia suave en Spotify": "37i9dQZF1DXdp5bwJ1FHFe",
+    "🌊 Olas del mar en Spotify": "37i9dQZF1DX9if5QDLdzCa",
+    "🤍 Ruido blanco en Spotify": "37i9dQZF1DWUZ5bk6qqDSy",
+    "🟤 Brown noise en Spotify": "37i9dQZF1DX4hpot8sYudB",
+    "🌀 Ventilador en Spotify": "37i9dQZF1DWUm4vT7WQxcD",
+    "🌲 Bosque nocturno en Spotify": "37i9dQZF1DWWSads6V2oIk",
 }
 
-spotify_cols = st.columns(2)
+selected_spotify = st.selectbox(
+    "Spotify: playlist ya escogida",
+    list(spotify_embed_links.keys()),
+    index=2
+)
+render_spotify_embed(selected_spotify, spotify_embed_links[selected_spotify])
 
-for i, (label, url) in enumerate(spotify_sound_links.items()):
-    with spotify_cols[i % 2]:
-        st.link_button(label, url, use_container_width=True)
-
-st.caption("Tip: elige una sola opción, pon temporizador si lo necesitas y no sigas buscando más sonidos.")
+st.caption("Tip: toca play una vez, pon temporizador si lo necesitas y no sigas buscando más sonidos.")
 st.divider()
 
 with st.expander("Revisión por la mañana"):
