@@ -182,9 +182,29 @@ activities = {
             "Mantén los ojos cerrados o medio cerrados.",
             "Haz que cada número se sienta más silencioso que el anterior."
         ]
+    },
+    "Tengo jet lag": {
+        "title": "✈️ Reajuste suave por jet lag",
+        "intro": "Tu cuerpo todavía está usando otro reloj. No tienes que forzar el sueño; solo ayudarle a orientarse poco a poco.",
+        "steps": [
+            "Ajusta tu mente al horario local: piensa 'aquí ya es hora de descansar'.",
+            "Evita revisar la hora de tu ciudad anterior o hacer cálculos de diferencia horaria.",
+            "Respira lento y deja que el cuerpo descanse aunque el sueño tarde en llegar.",
+            "Mañana busca luz natural temprano y evita siestas largas para ayudar a reiniciar el reloj interno."
+        ]
+    },
+    "Cambió el horario de verano": {
+        "title": "🕰️ Reajuste por cambio de horario",
+        "intro": "El cambio de hora puede sentirse raro por unos días. Tu cuerpo no está fallando; solo está recalibrando.",
+        "steps": [
+            "No pelees con el reloj. Recuérdate: mi cuerpo se va a adaptar gradualmente.",
+            "Mantén la habitación oscura y evita revisar el teléfono para no activar más al cerebro.",
+            "Haz una exhalación larga y suelta mandíbula, hombros y manos.",
+            "Mañana intenta mantener una hora estable para despertar, luz natural y cafeína solo temprano."
+        ]
     }
-
 }
+
 
 def render_one_click_audio_player(title, file_path):
     audio_path = Path(file_path)
@@ -267,6 +287,7 @@ def render_spotify_embed(title, spotify_playlist_id):
         height=172,
     )
 
+
 st.title("🌙 Rescate 4AM")
 st.subheader("Una app tranquila para ayudarte a volver a dormir")
 st.markdown("<p class='small-note'>Primera regla: no hacer scroll, no revisar mensajes, no resolver problemas.</p>", unsafe_allow_html=True)
@@ -274,6 +295,27 @@ st.markdown("<p class='small-note'>Primera regla: no hacer scroll, no revisar me
 if st.button("Me desperté y quiero volver a dormir"):
     st.session_state.wake_log.append(datetime.now().strftime("%Y-%m-%d %H:%M"))
     st.success(random.choice(messages))
+
+st.divider()
+
+st.header("Reajuste de horario")
+st.markdown("""
+<div class='calm-card'>
+<h3>✈️ Para jet lag o cambio de horario</h3>
+<p>Si viajaste, cruzaste zonas horarias o cambió el horario de verano, tu cuerpo puede despertar a horas raras.</p>
+<p>No es una emergencia. Es tu reloj interno ajustándose.</p>
+</div>
+""", unsafe_allow_html=True)
+
+with st.expander("Mini guía para volver al ritmo"):
+    st.write("""
+**Esta noche:** no hagas cálculos de hora, no revises el teléfono y no intentes obligarte a dormir.  
+**Mañana:** busca luz natural temprano, muévete un poco y evita siestas largas.  
+**Cafeína:** mejor solo temprano en el día mientras tu cuerpo se ajusta.  
+**Pantallas:** baja el brillo por la noche para no confundir más al cerebro.  
+
+El objetivo no es dormir perfecto hoy. El objetivo es mandar señales claras y suaves al cuerpo.
+""")
 
 st.divider()
 
